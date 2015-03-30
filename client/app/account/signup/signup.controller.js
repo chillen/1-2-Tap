@@ -11,8 +11,8 @@ angular.module('12TapApp')
       if(form.$valid) {
         Auth.createUser({
           name: $scope.user.name,
-          email: $scope.user.email,
-          password: $scope.user.password
+          email: $scope.user.name + "@rawrsauce.com",
+          password: "12345"
         })
         .then( function() {
           // Account created, redirect to home

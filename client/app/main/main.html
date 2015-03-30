@@ -1,13 +1,32 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <header class="hero-unit" id="banner">
-  <div class="container">
+  <div ng-hide="isLoggedIn()" class="container">
     <h1>1-2-Tap</h1>
     <p class="lead">Sign up for an account to get testing the 1-2-Tap password system!
       Alternatively, you can sign in! All it takes is a username; the password is on us.</p>
     <p>To signup or login, check out the buttons in the top right corner!</p>
   </div>
+
+  <div ng-show="isLoggedIn()" class="container">
+    <h1>Welcome {{ getCurrentUser().name }}!</h1>
+    <p class="lead">Click on a fake service to login!</p>
+  </div>
 </header>
+
+<div ng-show="isLoggedIn()" class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-12 panel panel-default">
+      <div class="panel-body">Bloop</div>
+    </div>
+    <div class="col-md-4 col-sm-12 panel panel-default">
+      <div class="panel-body">Bloop</div>
+    </div>
+    <div class="col-md-4 col-sm-12 panel panel-default">
+      <div class="panel-body">Bloop</div>
+    </div>
+  </div>
+</div>
 
 <footer class="footer">
   <div class="container">
