@@ -3,11 +3,11 @@
 angular.module('12TapApp')
   .service('schemeStatus', function (Auth) {
 
-    var control = function() { return Auth.getCurrentUser().control; };
-    var phase1 = function() { return Auth.getCurrentUser().phase1; };
-
+    var currentPhase = function() { return Auth.getCurrentUser().currentPhase; };
+    var incPhase = function() { Auth.incrementPhase(); };
 
     return {
-      gimmeBloop: function() { return phase1(); }
+      incrementPhase: function() { return incPhase(); },
+      currPhase: function(isit) { return currentPhase() == isit; }
     }
   });

@@ -58,6 +58,20 @@ exports.destroy = function(req, res) {
   });
 };
 
+
+exports.incrementPhase = function(req, res, next) {
+  var userId = req.body._id;
+  var currPhase = req.body.currentPhase;
+
+  User.findById(userId, function (err, user) {
+    user.currentPhase++;
+    user.save(function(err) {
+      if (err) res.send(403);
+      res.send(200);
+    });
+  });
+};
+
 /**
  * Change a users password
  */

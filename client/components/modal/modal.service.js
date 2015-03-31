@@ -25,6 +25,42 @@ angular.module('12TapApp')
     // Public API here
     return {
 
+
+
+      getTextModal: function(user) {
+
+        return function() {
+          var passModal;
+          console.log(user);
+          passModal = openModal({
+            modal: {
+              dismissable: false,
+              title: 'Password for Service ' + user.currentPhase,
+              html: '<p>Your current password is: ' + user.phase[user.currentPhase] + '</p>',
+              buttons: [{
+                classes: 'btn-confirm',
+                text: 'Login',
+                click: function(e) {
+                  passModal.close(e);
+                }
+              }]
+            }
+          }, 'modal-danger');
+
+          passModal.result.then(function(event) {
+            console.log(":D");
+          });
+        };
+
+      },
+
+      getTapModal: function(user) {
+
+        return function() {
+
+        }
+      },
+
       /* Confirmation modals */
       confirm: {
 

@@ -67,13 +67,14 @@ angular.module('12TapApp')
       createUser: function(user, callback) {
         var cb = callback || angular.noop;
 
-        user.phase1 = generatePass();
-        user.phase2 = generatePass();
-        user.phase3 = generatePass();
+        user.phase = [];
+        user.phase[0] = generatePass();
+        user.phase[1] = generatePass();
+        user.phase[2] = generatePass();
 
         user.control = !!user.control;
 
-        console.log(user.control);
+        user.currentPhase = 0;
 
         return User.save(user,
           function(data) {
@@ -85,6 +86,15 @@ angular.module('12TapApp')
             this.logout();
             return cb(err);
           }.bind(this)).$promise;
+      },
+
+      incrementPhase: function(callback) {
+        var cb = callback || angular.noop;
+        var user = currentUser;
+
+        User.incrementPhase(user);
+
+        cb();
       },
 
       /**

@@ -17,6 +17,12 @@ angular.module('12TapApp')
         params: {
           id:'me'
         }
+      },
+      incrementPhase: {
+        method: 'PUT',
+        params: {
+          controller:'incphase'
+        }
       }
 	  });
   });

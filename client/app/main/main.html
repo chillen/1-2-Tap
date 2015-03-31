@@ -10,19 +10,31 @@
 
   <div ng-show="isLoggedIn()" class="container">
     <h1>Welcome {{ getCurrentUser().name }}!</h1>
-    <p class="lead">Click on a fake service to login! {{ gimmeBloop() }}</p>
+    <p class="lead">
+      <span ng-show="currPhase(0)">Please select the <strong>first</strong> scheme to practice that password.</span>
+      <span ng-show="currPhase(1)">Please select the <strong>second</strong> scheme to practice that password.</span>
+      <span ng-show="currPhase(2)">Please select the <strong>third</strong> scheme to practice that password.</span>
+      <span ng-show="currPhase(3)">Thanks for practicing! Please attempt to login to fake service <strong>one</strong>.</span>
+      <span ng-show="currPhase(4)">Please attempt to login to fake service <strong>two</strong>.</span>
+      <span ng-show="currPhase(5)">Please attempt to login to fake service <strong>three</strong>.</span>
+      <span ng-show="getCurrentUser().currentPhase > 5">Thank you for participating in the study!</span>
+    </p>
+
+    <button ng-click="incrementPhase()">Increment Phase</button>
   </div>
 </header>
 
 <div ng-show="isLoggedIn()" class="container">
   <div class="row">
-    <div class="col-md-4 col-sm-12 panel panel-default">
+    <div id="pass1" class="col-md-4 col-sm-12 panel panel-default">
+      <div class="panel-body">Password Scheme One
+        <button ng-click="loadPasswordModal(getCurrentUser())">Click to Login</button>
+      </div>
+    </div>
+    <div id="pass2" class="col-md-4 col-sm-12 panel panel-default">
       <div class="panel-body">Bloop</div>
     </div>
-    <div class="col-md-4 col-sm-12 panel panel-default">
-      <div class="panel-body">Bloop</div>
-    </div>
-    <div class="col-md-4 col-sm-12 panel panel-default">
+    <div id="pass3" class="col-md-4 col-sm-12 panel panel-default">
       <div class="panel-body">Bloop</div>
     </div>
   </div>
