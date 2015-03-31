@@ -7,6 +7,14 @@ angular.module('12TapApp')
       currentUser = User.get();
     }
 
+    var generatePass = function() {
+      var pass = "";
+      for (var i = 0; i < 7; i++) {
+        pass+= ((Math.floor((Math.random() * 15))).toString(16));
+      }
+      return pass;
+    };
+
     return {
 
       /**
@@ -58,6 +66,14 @@ angular.module('12TapApp')
        */
       createUser: function(user, callback) {
         var cb = callback || angular.noop;
+
+        user.phase1 = generatePass();
+        user.phase2 = generatePass();
+        user.phase3 = generatePass();
+
+        user.control = !!user.control;
+
+        console.log(user.control);
 
         return User.save(user,
           function(data) {

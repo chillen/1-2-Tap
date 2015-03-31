@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('12TapApp')
-  .controller('MainCtrl', function ($scope, $http, socket, Auth) {
+  .controller('MainCtrl', function ($scope, $http, socket, Auth, schemeStatus) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
@@ -12,6 +12,7 @@ angular.module('12TapApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.gimmeBloop = schemeStatus.gimmeBloop;
 
     $scope.addThing = function() {
       if($scope.newThing === '') {

@@ -13,7 +13,11 @@ var UserSchema = new Schema({
   },
   hashedPassword: String,
   provider: String,
-  salt: String
+  salt: String,
+  phase1: String,
+  phase2: String,
+  phase3: String,
+  control: Boolean
 });
 
 /**
