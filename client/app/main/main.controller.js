@@ -18,10 +18,18 @@ angular.module('12TapApp')
     $scope.loadPasswordModal = function(user) {
       console.log(user.control);
       if (user.control) {
-        Modal.getTextModal(user)();
+        // if in practice mode
+        if (user.currentPhase < 3)
+          Modal.getTextModalPractice(user)();
+        else
+          Modal.getTextModal(user)();
       }
       else {
-        Modal.getTapModal(user)();
+        // if in practice mode
+        if (user.currentPhase < 3)
+          Modal.getTapModalPractice(user)();
+        else
+          Modal.getTapModal(user)();
       }
     }
 

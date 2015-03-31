@@ -22,21 +22,23 @@ angular.module('12TapApp')
       });
     }
 
+    var services = ["Awesome Airlines", "Accidentally $160 on Prime Shopping", "Moving Music"];
+    var colours  = ["modal-primary", "modal-success", "modal-info"];
+
     // Public API here
     return {
-
-
 
       getTextModal: function(user) {
 
         return function() {
           var passModal;
-          console.log(user);
+          var currentIndex = user.currentPhase % 3;
+
           passModal = openModal({
             modal: {
               dismissable: false,
-              title: 'Password for Service ' + user.currentPhase,
-              html: '<p>Your current password is: ' + user.phase[user.currentPhase] + '</p>',
+              title: 'Login to ' + services[currentIndex],
+              html: '<p>Your current password is: ' + user.phase[currentIndex] + '</p>',
               buttons: [{
                 classes: 'btn-confirm',
                 text: 'Login',
@@ -45,7 +47,35 @@ angular.module('12TapApp')
                 }
               }]
             }
-          }, 'modal-danger');
+          }, colours[currentIndex]);
+
+          passModal.result.then(function(event) {
+            console.log(":D");
+          });
+        };
+
+      },
+
+      getTextModalPractice: function(user) {
+
+        return function() {
+          var passModal;
+          var currentIndex = user.currentPhase % 3;
+
+          passModal = openModal({
+            modal: {
+              dismissable: false,
+              title: 'Login to ' + services[currentIndex],
+              html: '<p>Your current password is: ' + user.phase[currentIndex] + '</p>',
+              buttons: [{
+                classes: 'btn-confirm',
+                text: 'Login',
+                click: function(e) {
+                  passModal.close(e);
+                }
+              }]
+            }
+          }, colours[currentIndex]);
 
           passModal.result.then(function(event) {
             console.log(":D");
@@ -57,8 +87,57 @@ angular.module('12TapApp')
       getTapModal: function(user) {
 
         return function() {
+          var passModal;
+          var currentIndex = user.currentPhase % 3;
 
-        }
+          passModal = openModal({
+            modal: {
+              dismissable: false,
+              title: 'Login to ' + services[currentIndex],
+              html: '<p>Your current password is: ' + user.phase[currentIndex] + '</p>',
+              buttons: [{
+                classes: 'btn-confirm',
+                text: 'Login',
+                click: function(e) {
+                  passModal.close(e);
+                }
+              }]
+            }
+          }, colours[currentIndex]);
+
+          passModal.result.then(function(event) {
+            console.log(":D");
+          });
+        };
+
+      },
+
+      getTapModalPractice: function(user) {
+
+        return function() {
+          var passModal;
+          var currentIndex = user.currentPhase % 3;
+
+          passModal = openModal({
+            modal: {
+              dismissable: false,
+              title: 'Login to ' + services[currentIndex],
+              html: '<p>Your current password is: ' + user.phase[currentIndex] + '</p>',
+              buttons: [{
+                classes: 'btn-confirm',
+                text: 'Login',
+                click: function(e) {
+                  passModal.close(e);
+                }
+              }]
+            }
+          }, colours[currentIndex]);
+
+          passModal.result.then(function(event) {
+            console.log(":D");
+          });
+        };
+
       },
 
       /* Confirmation modals */
@@ -101,7 +180,7 @@ angular.module('12TapApp')
                   }
                 }]
               }
-            }, 'modal-danger');
+            }, colours[currentIndex]);
 
             deleteModal.result.then(function(event) {
               del.apply(event, args);

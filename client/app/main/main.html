@@ -11,31 +11,65 @@
   <div ng-show="isLoggedIn()" class="container">
     <h1>Welcome {{ getCurrentUser().name }}!</h1>
     <p class="lead">
-      <span ng-show="currPhase(0)">Please select the <strong>first</strong> scheme to practice that password.</span>
-      <span ng-show="currPhase(1)">Please select the <strong>second</strong> scheme to practice that password.</span>
-      <span ng-show="currPhase(2)">Please select the <strong>third</strong> scheme to practice that password.</span>
-      <span ng-show="currPhase(3)">Thanks for practicing! Please attempt to login to fake service <strong>one</strong>.</span>
-      <span ng-show="currPhase(4)">Please attempt to login to fake service <strong>two</strong>.</span>
-      <span ng-show="currPhase(5)">Please attempt to login to fake service <strong>three</strong>.</span>
+      <span ng-show="currPhase(0)">Please select the <strong>airline</strong> system to practice that password.</span>
+      <span ng-show="currPhase(1)">Please select the <strong>shopping</strong> system to practice that password.</span>
+      <span ng-show="currPhase(2)">Please select the <strong>music</strong> system to practice that password.</span>
+      <span ng-show="currPhase(3)">Thanks for practicing! Please attempt to login to the <strong>airline</strong> system.</span>
+      <span ng-show="currPhase(4)">Please attempt to login to the <strong>shopping</strong> system.</span>
+      <span ng-show="currPhase(5)">Please attempt to login to the <strong>music</strong> system.</span>
       <span ng-show="getCurrentUser().currentPhase > 5">Thank you for participating in the study!</span>
     </p>
-
-    <button ng-click="incrementPhase()">Increment Phase</button>
   </div>
+  <button ng-click="incrementPhase()" class="btn btn-success">Increment</button>
 </header>
 
-<div ng-show="isLoggedIn()" class="container">
+<!-- Practice Phases -->
+<div ng-show="isLoggedIn() && getCurrentUser().currentPhase < 3"class="container">
+  <br />
   <div class="row">
-    <div id="pass1" class="col-md-4 col-sm-12 panel panel-default">
-      <div class="panel-body">Password Scheme One
-        <button ng-click="loadPasswordModal(getCurrentUser())">Click to Login</button>
+    <div id="pass1" class="panel panel-primary">
+      <div class="panel-heading"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Airline System (Practice)</div>
+      <div class="panel-body">
+        <button ng-disabled="getCurrentUser().currentPhase != 0" class="btn btn-primary" ng-click="loadPasswordModal(getCurrentUser())">Click to Login</button>
       </div>
     </div>
-    <div id="pass2" class="col-md-4 col-sm-12 panel panel-default">
-      <div class="panel-body">Bloop</div>
+    <div id="pass2" class="panel panel-success">
+      <div class="panel-heading"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Shopping System (Practice)</div>
+      <div class="panel-body">
+        <button ng-disabled="getCurrentUser().currentPhase != 1" class="btn btn-primary" ng-click="loadPasswordModal(getCurrentUser())">Click to Login</button>
+      </div>
     </div>
-    <div id="pass3" class="col-md-4 col-sm-12 panel panel-default">
-      <div class="panel-body">Bloop</div>
+    <div id="pass3" class="panel panel-info">
+      <div class="panel-heading"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> Music System (Practice)</div>
+      <div class="panel-body">
+        <button ng-disabled="getCurrentUser().currentPhase != 2"  class="btn btn-primary" ng-click="loadPasswordModal(getCurrentUser())">Click to Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Testing Phases -->
+
+<div ng-show="isLoggedIn() && getCurrentUser().currentPhase > 2" class="container">
+  <br />
+  <div class="row">
+    <div id="pass1" class="panel panel-primary">
+      <div class="panel-heading"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Airline System</div>
+      <div class="panel-body">
+        <button ng-disabled="getCurrentUser().currentPhase != 3" class="btn btn-primary" ng-click="loadPasswordModal(getCurrentUser())">Click to Login</button>
+      </div>
+    </div>
+    <div id="pass2" class="panel panel-success">
+      <div class="panel-heading"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Shopping System</div>
+      <div class="panel-body">
+        <button ng-disabled="getCurrentUser().currentPhase != 4" class="btn btn-primary" ng-click="loadPasswordModal(getCurrentUser())">Click to Login</button>
+      </div>
+    </div>
+    <div id="pass3" class="panel panel-info">
+      <div class="panel-heading"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> Music System</div>
+      <div class="panel-body">
+        <button ng-disabled="getCurrentUser().currentPhase != 5"  class="btn btn-primary" ng-click="loadPasswordModal(getCurrentUser())">Click to Login</button>
+      </div>
     </div>
   </div>
 </div>
