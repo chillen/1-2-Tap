@@ -29,7 +29,7 @@ On top of the images, we'll be overlaying (in small, transluscent text) the *i* 
 
 We use a variety of technologies, tossed onto a Node.js server hosted by Heroku. 
 
-We are using the [mean.io](http://mean.io/#!/) client to generate the application.
+We are using the [angular-fullstack generator](https://github.com/DaftMonk/generator-angular-fullstack) client to generate the application.
 From there, we're using [jQuery UI for slide effects](https://jqueryui.com/show/), [bootstrap gridding](http://getbootstrap.com/examples/grid/)
 to produce our div grid, and the [effect found at this JSFiddle](http://jsfiddle.net/Fy8vD/) 
 for the tutorial and tap recognition. We're also using [SweetAlert](http://tristanedwards.me/sweetalert). It's pretty.
