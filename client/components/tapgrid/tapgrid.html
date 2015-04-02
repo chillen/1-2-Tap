@@ -4,7 +4,7 @@
 </div>
 <div class="modal-body">
   <p ng-show="modal.getCurChar() == 0 && modal.getPractice()">The current password is: {{modal.humanPassword()}}.</p>
-  <div class="container tap-container col-xs-12">
+  <div class="container tap-container col-xs-12" ng-style="{'background-image':'url(/assets/images/'+user.currentPhase%3+''+modal.getCurChar()+'.jpg)'}">
     <div class="row">
       <div class="col-xs-4 tap-btn" sglclick="modal.tryGrid(0,true)" ng-dblClick="modal.tryGrid(0,false)">
         A

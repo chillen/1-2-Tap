@@ -146,6 +146,7 @@ angular.module('12TapApp')
           var practice = user.currentPhase < 3;
 
           passModal = openTapModal({
+            user: user,
             modal: {
               dismissable: false,
               title: 'Login to ' + services[currentIndex],
