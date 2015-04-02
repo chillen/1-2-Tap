@@ -40,3 +40,39 @@
   display: block;
   border: 5px dotted orange;
 }
+
+.tap-pulse {
+    border: 3px solid rgba(0,0,0,0.8);
+    -webkit-border-radius: 30px;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    left:33%;
+    top:25%;
+    background-color: rgba(0,0,0,0.3);
+    -webkit-animation: pulsate 2s ease-out;
+    -webkit-animation-iteration-count: infinite;
+}
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}
+
+.tap-double {
+    border: 3px solid rgba(0,0,0,0.8);
+    -webkit-border-radius: 30px;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    left:50%;
+    top:25%;
+    background-color: rgba(0,0,0,0.3);
+    -webkit-animation: pulsate-double 2s ease-out;
+    -webkit-animation-iteration-count: infinite;
+}
+@-webkit-keyframes pulsate-double {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}

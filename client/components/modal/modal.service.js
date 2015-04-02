@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('12TapApp')
-  .factory('Modal', function ($rootScope, $modal, tapgrid) {
+  .factory('Modal', function ($rootScope, $modal, tapgrid, Auth) {
     /**
      * Opens a modal
      * @param  {Object} scope      - an object to be merged with modal's scope
@@ -79,27 +79,58 @@ angular.module('12TapApp')
       getTapModal: function(user) {
 
         return function() {
-          var passModal, curChar;
+          var passModal;
+          var curChar = 0;
           var currentIndex = user.currentPhase % 3;
-
-          // i is the i value, as described in the README
-          // Single is a boolean which is true or false depending on if they
-          // tingle clicked/tapped
-          var tryGridPoint = function(i, single) {
-            // if the character tapped is correct based on the hex algorithm
-            // Read the Readme
-            return (user.phase[currentIndex].charAt(curChar++) == (single? i*2 : i*2+1).toString(16));
-
-          },
+          var fullPassShown = false; // Have they been shown the entire password?
+          var maxAttempts = 3;
+          var attemptsRemaining;
 
           passModal = openTapModal({
             modal: {
               dismissable: false,
               title: 'Login to ' + services[currentIndex],
-              html: '<p>Your tap password is: ' + user.phase[currentIndex] + '</p>' ,
               password: user.phase[currentIndex],
               practice: user.currentPhase < 3,
               curChar: curChar,
+
+              shouldIBloop: function(i) {
+                // current char of the password
+                var char = user.phase[currentIndex].charAt(this.curChar);
+
+                // If in practice && either i*2 or i*2+1 at the current pass character
+                return this.practice && (char == (i*2).toString(16) || char == (i*2+1).toString(16));
+              },
+
+              shouldIBloopBloop: function(i) {
+                // current char of the password
+                var char = user.phase[currentIndex].charAt(this.curChar);
+
+                // If it should bloop and the char == i*2+1, meaning it's a double
+                // tap/click
+                return this.shouldIBloop(i) && (char == (i*2+1).toString(16));
+              },
+
+              tryGrid: function(i, single) {
+                // if the character tapped is correct based on the hex algorithm
+                // Read the Readme
+                // Correct! Good job.
+                if (user.phase[currentIndex].charAt(this.curChar) == (single? i*2 : i*2+1).toString(16)) {
+                  this.curChar++;
+                  // Beyond the end of the password? Sweet!
+                  if (this.curChar >= user.phase[currentIndex].length) {
+                    swal("Good job!", "You logged in! That's awesome!", "success");
+                    Auth.incrementPhase();
+                    passModal.close({});
+                  }
+
+                }
+                else {
+                  swal("Oh no!", "It's okay, maybe with some practice you'll be a pro!", "error");
+                  passModal.close({});
+                }
+              },
+
               buttons: [{
                 classes: 'btn-confirm',
                 text: 'Login',
@@ -118,3 +149,30 @@ angular.module('12TapApp')
       }
     };
   });
+
+// Nice shim to allow for both single and double clicks on the same element,
+// provided by Rob at http://stackoverflow.com/questions/20444409/handling-ng-click-and-ng-dblclick-on-the-same-element-with-angularjs
+angular.module('12TapApp')
+  .directive('sglclick', ['$parse', function($parse) {
+       return {
+           restrict: 'A',
+           link: function(scope, element, attr) {
+             var fn = $parse(attr['sglclick']);
+             var delay = 300, clicks = 0, timer = null;
+             element.on('click', function (event) {
+               clicks++;  //count clicks
+               if(clicks === 1) {
+                 timer = setTimeout(function() {
+                   scope.$apply(function () {
+                       fn(scope, { $event: event });
+                   });
+                   clicks = 0;             //after action performed, reset counter
+                 }, delay);
+                 } else {
+                   clearTimeout(timer);    //prevent single-click action
+                   clicks = 0;             //after action performed, reset counter
+                 }
+             });
+           }
+       };
+   }]);

@@ -94,6 +94,8 @@ angular.module('12TapApp')
 
         User.incrementPhase(user);
 
+        currentUser.currentPhase++;
+
         cb();
       },
 
