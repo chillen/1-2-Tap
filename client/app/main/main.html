@@ -10,6 +10,25 @@
 
   <div ng-show="isLoggedIn()" class="container">
     <h1>Welcome {{ getCurrentUser().name }}!</h1>
+    <div ng-show="getCurrentUser().control && currPhase(0)">
+      <p>You're a control user! Want some <strong>instructions</strong>? Of course you do!</p>
+      <p>As a control user, you're going to be presented a text password of the same strength
+        as the non-control users. In your case, you are given a <strong>seven character hex
+          password</strong>. This means each password is 7 digits long, but <em>only contains</em> the
+          characters <strong>0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F.</strong> If you need to guess, at least that's not
+          many options! (16, actually).</p>
+    </div>
+    <div ng-show="!getCurrentUser().control && currPhase(0)">
+      <p>Want some <strong>instructions</strong>? Of course you do!</p>
+      <p>You'll be working with our new <strong>1-2-Tap</strong> password. It's built for
+        touch devices in particular, but works wonderfully (we hope) with a mouse as well.
+        In this test, we'll ask you to <strong>use your mouse</strong> to keep things
+        consistent.</p>
+      <p>You'll be given a grid overtop an image, and presented with 7 images in sequence.
+        The grid sections are all labelled with a letter to help you remember them if you're
+        better with letters. At each image, you'll have the option of single clicking or
+        double clicking. Don't worry if it's confusing! There's plenty of help built in.</p>
+    </div>
     <p class="lead">
       <span ng-show="currPhase(0)">Please select the <strong>airline</strong> system to practice that password.</span>
       <span ng-show="currPhase(1)">Please select the <strong>shopping</strong> system to practice that password.</span>
@@ -19,9 +38,11 @@
       <span ng-show="currPhase(5)">Please attempt to login to the <strong>music</strong> system.</span>
       <span ng-show="getCurrentUser().currentPhase > 5">Thank you for participating in the study!</span>
     </p>
+    
+    <p>The instructions above will guide you as to what to do next! Thanks for participating!</p>
   </div>
-  <button ng-click="incrementPhase()" class="btn btn-success">Increment</button>
 </header>
+
 
 <!-- Practice Phases -->
 <div ng-show="isLoggedIn() && getCurrentUser().currentPhase < 3"class="container">
@@ -78,6 +99,6 @@
   <div class="container">
       <p>TapPass |
         <a href="https://twitter.com/GeekGoesRawr">@GeekGoesRawr</a> |
-         Code by Connor Hillen for Carleton's HCI (COMP 3804, W2015)</p>
+         Code fueled by Coffee, Connor, and that 45 minute timer that forces you to not be a programming lump in long coding sessions.</p>
   </div>
 </footer>

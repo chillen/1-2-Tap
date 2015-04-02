@@ -26,6 +26,10 @@
   background: cyan;
   display: block;
   margin: 0px;
+  -moz-user-select: none;
+-khtml-user-select: none;
+-webkit-user-select: none;
+-o-user-select: none;
 }
 
 .tap-btn {
