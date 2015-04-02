@@ -33,3 +33,11 @@ We are using the [angular-fullstack generator](https://github.com/DaftMonk/gener
 From there, we're using [jQuery UI for slide effects](https://jqueryui.com/show/), [bootstrap gridding](http://getbootstrap.com/examples/grid/)
 to produce our div grid, and the [effect found at this JSFiddle](http://jsfiddle.net/Fy8vD/) 
 for the tutorial and tap recognition. We're also using [SweetAlert](http://tristanedwards.me/sweetalert). It's pretty.
+
+## Running ##
+
+First, make sure you have NodeJS, npm, MongoDB, Grunt, and Bower installed. Git clone this repo. Run npm install. Then run bower install. Then run grunt serve. This will get it all up and running. You may need to sudo at some point.
+
+## Logs ##
+
+The logs are stored... in large quantities... in the browser local storage. To access them, make an account (ideally, named LOGGER) in the control group. Login. When it asks for a password, put "showlogs". To clear them, put "clearlogs". The logs are also available (in possibly more manageable format) in the local storage section of your browser. Don't clear your stuff before pulling a copy.
