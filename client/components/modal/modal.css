@@ -21,3 +21,22 @@
 .modal-danger .modal-header {
   background: #d9534f;
 }
+
+.tap-container {
+  background: cyan;
+  display: block;
+  margin: 0px;
+}
+
+.tap-btn {
+  border: 1px solid black;
+  height: 100px;
+  width: 33.33333%;
+  color: rgba(0,0,0,0.4);
+}
+
+.tap-no {
+  background-color: rgba(255, 0, 0, 0.8);
+  display: block;
+  border: 5px dotted orange;
+}

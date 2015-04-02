@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
+  <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
+</div>
+<div class="modal-body">
+  <p ng-if="modal.text" ng-bind="modal.text"></p>
+  <p>The current password is: {{modal.password}}. The user is {{modal.practice}}</p>
+  <div class="container tap-container col-xs-12">
+    <div class="row">
+      <div ng-class="{(modal.practice && modal.password.charAt(modal.curChar) == 0 || modal.password.charAt(modal.curChar) == 1)}" class="col-xs-4 tap-btn">a</div>
+      <div class="col-xs-4 tap-btn">b</div>
+      <div class="col-xs-4 tap-btn">c</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 tap-btn">d</div>
+      <div class="col-xs-4 tap-btn tap-no">e</div>
+      <div class="col-xs-4 tap-btn">f</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 tap-btn">g</div>
+      <div class="col-xs-4 tap-btn">h</div>
+      <div class="col-xs-4 tap-btn">i</div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button>
+</div>
